@@ -23,10 +23,10 @@ app.use(express.static('public'));
 app.engine('hbs', exphbs.engine( {extname: '.hbs'}))
 app.set('view engine', 'hbs');
 
-//Router
+//Router to render the page
 app.get('', (req, res) => {
     res.render('home.hbs');
-})
+});
 
 
 
