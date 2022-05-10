@@ -25,6 +25,7 @@ app.set("view engine", "hbs");
 app.get("", (req, res) => {
   res.render("home.hbs");
   res.render("movies.hbs");
+  res.render("series.hbs");
 });
 
 app.listen(port, () => console.log("Listening on port " + port));
