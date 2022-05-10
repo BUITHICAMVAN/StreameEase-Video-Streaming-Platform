@@ -24,8 +24,8 @@ app.set("view engine", "hbs");
 //Router to render the page
 app.get("", (req, res) => {
   res.render("home.hbs");
-  res.render("movies.hbs");
-  res.render("series.hbs");
+  //   res.render("movies.hbs");
+  //   res.render("series.hbs");
 });
 
 app.listen(port, () => console.log("Listening on port " + port));
