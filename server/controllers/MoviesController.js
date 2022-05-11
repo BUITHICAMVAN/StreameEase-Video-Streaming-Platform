@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     user     : 'root',
     password : 'Bestteemo',
   });
-
+// Views Movie
   exports.view = (req, res) =>
 {
     pool.getConnection((err, connection) => {
@@ -25,14 +25,7 @@ const pool = mysql.createPool({
             console.log(rows);
         })
     })
-
-
-
-
-
-
-
 }
-// // Views Movie
+ 
 
 
