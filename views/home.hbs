@@ -7,7 +7,7 @@
         <th scope="col">Genre</th>
         <th scope="col">Director</th>
         <th scope="col" >Description</th>
-        <th scope="col">Play</th> <!--lam thanh cai cho de mo video -->
+        <th scope="col" >Play</th> <!--lam thanh cai cho de mo video -->
     </tr>
     </thead>
     <tbody>
@@ -21,10 +21,10 @@
         <td>{{this.Director}}</td>
         <td>{{this.Description}}</td>
         <td>
-        <a href={{this.Play}} class="btn btn-light btn-small"><i class= "bi bi-link"></i></a>
+        <a class="btn btn-light btn-small"> <iframe class="embed-responsive-item" src={{this.Play}}></iframe></a>
         </td>
-        {{!-- <td>{{this.Play}}</td> --}}
-      </tr>
+        {{!-- <td>{{this.Play}}</td>  --}}
+             </tr>
     {{/each}}
 
       
