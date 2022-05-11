@@ -1,15 +1,34 @@
 <table class="table" href="home.hbs">
   <thead> <!-- header -->
     <tr>
-        <th scope="col">ID</th>
+        <th scope="col">idMovie</th>
         <th scope="col">Title</th>
         <th scope="col">Year</th>
-        <th scope="col">Release</th>
-        <th scope="col">Views</th>
-        <th scope="col" >Genres</th>
-        <th scope="col">Link</th> <!--lam thanh cai cho de mo video -->
+        <th scope="col">Genre</th>
+        <th scope="col">Director</th>
+        <th scope="col" >Description</th>
+        <th scope="col">Play</th> <!--lam thanh cai cho de mo video -->
     </tr>
-  </thead>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <th scope="row" {{this.id}}></th>
+        <td>{{this.idMovie}}</td>
+        <td>{{this.Title}}</td>
+        <td>{{this.Year}}</td>
+        <td>{{this.Genre}}</td>
+        <td>{{this.Director}}</td>
+        <td>{{this.Description}}</td>
+        <td>{{this.Play}}</td>
+      </tr>
+    {{/each}}
+
+      
+      
+    </tbody>
+    </table>
+  {{!-- </thead>
 
   <tbody>
     <tr>
@@ -44,5 +63,5 @@
         <a href="https://www.youtube.com/watch?v=1aXZQcG2Y6I&t=1375s" class="btn btn-light btn-small"><i class= "bi bi-link"></i> Link </a>
       </td>
     </tr>
-  </tbody>
-</table>
+  </tbody> --}}
+{{!-- </table> --}}
