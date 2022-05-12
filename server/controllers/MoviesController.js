@@ -4,9 +4,9 @@ const mysql = require("mysql");
 const pool = mysql.createPool({
   connectionLimit: 100, //important
   host: "localhost",
-  database: "Video_Streaming",
+  database: "video_streaming",
   user: "root",
-  password: "Bestteemo",
+  password: "@@@Btcv08122002",
 });
 // Views Movie
 exports.view = (req, res) => {
