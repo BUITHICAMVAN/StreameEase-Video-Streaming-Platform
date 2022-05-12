@@ -6,7 +6,7 @@ const mysql = require("mysql");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 8080;
 
 //Parsing middleware
 //Parse application/ x-ww-form-urlencoded
