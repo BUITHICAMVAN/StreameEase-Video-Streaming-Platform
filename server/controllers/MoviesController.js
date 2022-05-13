@@ -50,16 +50,16 @@ exports.find = (req, res) => {
   };
 
   exports.create = (req, res) => {
-    let searchTerm = req.body.search;
+    const {idMovie,Title,Year,Genre,Director,Play} = req.body;
     // User the connection
     pool.getConnection((err, connection) => {
-      connection.query('SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
+      connection.query('insert into Movies set idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?', [idMovie,Title,Year,Genre,Director,Play], (err, rows) => {
       connection.release();
       if (!err) {
-        res.render('home', { rows });
+        res.render('add-movies');
       } else {
         console.log(err);
       }
-      console.log('The data from user table: \n', rows);
+      console.log('successfully inserted');
     });})
   };  
