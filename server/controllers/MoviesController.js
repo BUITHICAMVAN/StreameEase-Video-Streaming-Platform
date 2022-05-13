@@ -8,7 +8,7 @@ const pool = mysql.createPool({
   user: "root",
   password: "@@@Btcv08122002",
 });
-5
+5;
 // Views Movie
 exports.view = (req, res) => {
   pool.getConnection((err, connection) => {
@@ -18,7 +18,7 @@ exports.view = (req, res) => {
       //when done with connection
       connection.release();
 
-      // if there is no err, render page home
+      // if there is no err, render page movies
       if (!err) res.render("home", { rows });
       else {
         console.log(err);
