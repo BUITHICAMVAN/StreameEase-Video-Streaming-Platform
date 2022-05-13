@@ -48,3 +48,18 @@ exports.find = (req, res) => {
   exports.form = (req, res) => {
     res.render('add-movies');
   };
+
+  exports.create = (req, res) => {
+    let searchTerm = req.body.search;
+    // User the connection
+    pool.getConnection((err, connection) => {
+      connection.query('SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
+      connection.release();
+      if (!err) {
+        res.render('home', { rows });
+      } else {
+        console.log(err);
+      }
+      console.log('The data from user table: \n', rows);
+    });})
+  };  
