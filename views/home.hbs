@@ -1,48 +1,43 @@
+<div class="row">
+  <div class="col-6">
+    <h1>Users</h1>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <a href="/adduser" type="button" class="btn btn-primary align-self-center">+ add Mo</a>
+  </div>
+</div>
+
 <table class="table" href="home.hbs">
   <thead> <!-- header -->
     <tr>
-        <th scope="col">ID</th>
+        <th scope="col">idMovie</th>
         <th scope="col">Title</th>
         <th scope="col">Year</th>
-        <th scope="col">Release</th>
-        <th scope="col">Views</th>
-        <th scope="col" >Genres</th>
-        <th scope="col">Link</th> <!--lam thanh cai cho de mo video -->
+        <th scope="col">Genre</th>
+        <th scope="col">Director</th>
+        <th scope="col">Description</th>
+        <th scope="col" >Play</th> <!--lam thanh cai cho de mo video -->
     </tr>
-  </thead>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <td>{{this.idMovie}}</td>
+        <td>{{this.Title}}</td>
+        <td>{{this.Year}}</td>
+        <td>{{this.Genre}}</td>
+        <td>{{this.Director}}</td>
+        <td>
+          <p class=".d-sm-none .d-md-block">{{this.Description}}</p>
+        </td>
+        <td><iframe width="450" height="250" src={{this.Play}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</td>
+        {{!-- <td>{{this.Play}}</td>  --}}
+             </tr>
+    {{/each}}
 
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>200</td>
-      <td>Horror</td>
-      <td>
-        <a href="https://www.youtube.com/watch?v=1aXZQcG2Y6I&t=1375s" class="btn btn-light btn-small"><i class= "bi bi-link"></i> Link </a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>300</td>
-      <td>Comedy</td>
-      <td>
-        <a href="https://www.youtube.com/watch?v=1aXZQcG2Y6I&t=1375s" class="btn btn-light btn-small"><i class= "bi bi-link"></i> Link </a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-      <td>400</td>
-      <td>Sci-fi</td>
-      <td>
-        <a href="https://www.youtube.com/watch?v=1aXZQcG2Y6I&t=1375s" class="btn btn-light btn-small"><i class= "bi bi-link"></i> Link </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      
+      
+    </tbody>
+    </table>
+ 
