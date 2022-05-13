@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host: "localhost",
   database: "Video_Streaming",
   user: "root",
-  password: "@@@Btcv08122002",
+  password: "Bestteemo",
 });
 5;
 
