@@ -6,9 +6,9 @@ const pool = mysql.createPool({
   host: "localhost",
   database: "Video_Streaming",
   user: "root",
-  password: "Bestteemo",
+  password: "@@@Btcv08122002",
 });
-
+5
 // Views Movie
 exports.view = (req, res) => {
   pool.getConnection((err, connection) => {
@@ -34,14 +34,24 @@ exports.find = (req, res) => {
   let searchTerm = req.body.search;
   // User the connection
   pool.getConnection((err, connection) => {
-    connection.query('SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ?', ['%' + searchTerm + '%', '%' + searchTerm + '%'], (err, rows) => {
-    connection.release();
-    if (!err) {
-      res.render('home', { rows });
-    } else {
-      console.log(err);
-    }
-    console.log('The data from user table: \n', rows);
-  });}
-  )};
-
+    connection.query(
+      "SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ? OR Genre LIKE ? OR Director LIKE ? OR Description LIKE ?",
+      [
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+      ],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.render("home", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
