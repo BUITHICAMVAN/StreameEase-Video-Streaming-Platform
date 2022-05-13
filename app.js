@@ -30,20 +30,23 @@ app.set("view engine", "hbs");
 // });
 // =======
 // const pool = mysql.createPool({
-//   connectionLimit : 100, //important
-//   host     : 'localhost',
-//   database : 'Video_Streaming',
-//   user     : 'root',
-//   password : 'Bestteemo',
-// });
+  //   connectionLimit : 100, //important
+  //   host     : 'localhost',
+  //   database : 'Video_Streaming',
+  //   user     : 'root',
+  //   password : 'Bestteemo',
+  // });
 
-// pool.getConnection((err, connection) => {
-//   if(err) throw err;
-//   console.log('Connected as ID ' + connection.threadId);
-//     });
+  // pool.getConnection((err, connection) => {
+  //   if(err) throw err;
+  //   console.log('Connected as ID ' + connection.threadId);
+  //     });
 
-const routes = require("./server/routes/Movies");
 
-app.use("/", routes);
+const routes = require('./server/routes/Movies');
+
+app.use('/', routes);
+
+
 
 app.listen(port, () => console.log("Listening on port " + port));
