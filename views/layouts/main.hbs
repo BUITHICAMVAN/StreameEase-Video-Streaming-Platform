@@ -17,7 +17,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Video Streaming Management System</a>
+      <a class="navbar-brand" href="/home">Video Streaming Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -25,23 +25,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Movies</a>
+            <a class="nav-link active" aria-current="page" href="/home">Movies</a>
           </li>
         </ul>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./series.hbs">Series</a>
+            <a class="nav-link active" aria-current="page" href="/series">Series</a>
           </li>
         </ul>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./actor.hbs">Actor</a>
+            <a class="nav-link active" aria-current="page" href="/actor">Actor</a>
           </li>
         </ul>
 
-        <form class="d-flex" method="POST" action="/" novalidate>
+        <form class="d-flex" method="POST" action="/home" novalidate>
           <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
           <button class="btn btn-outline-light" type="submit">Search</button>
         </form>

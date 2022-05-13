@@ -9,6 +9,7 @@ const pool = mysql.createPool({
   password: "@@@Btcv08122002",
 });
 5;
+
 // Views Movie
 exports.view = (req, res) => {
   pool.getConnection((err, connection) => {
@@ -29,7 +30,7 @@ exports.view = (req, res) => {
   });
 };
 
-//Find user by search
+//Find user by search in Movies
 exports.find = (req, res) => {
   let searchTerm = req.body.search;
   // User the connection
@@ -54,4 +55,9 @@ exports.find = (req, res) => {
       }
     );
   });
+};
+
+//Views series
+exports.find = (req, res) => {
+  res.render("series");
 };
