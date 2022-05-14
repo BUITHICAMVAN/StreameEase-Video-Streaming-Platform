@@ -19,7 +19,10 @@ exports.view = (req, res) => {
       connection.release();
 
       // if there is no err, render page home
-      if (!err) res.render("home", { rows });
+      if (!err) {
+        let removedMovies = req.query.removed;
+        res.render("home", { rows, removedMovies });
+      }
       else {
         console.log(err);
       }
@@ -168,21 +171,33 @@ exports.update = (req, res) => {
 // };
 
 exports.delete = (req, res) => {
-  console.log("yes");
+
+  // Delete a record
+
   // User the connection
-  // pool.getConnection((err, connection) => {
-  //   connection.query(
-  //     "DELETE * FROM Movies WHERE idMovie = ?",
-  //     [req.params.idMovie],
-  //     (err, rows) => {
-  //       if (!err) {
-  //         res.redirect("/");
-  //         res.render('home')
-  //       } else {
-  //         console.log(err);
-  //       }
-  //       console.log("The data from user table: \n", rows);
-  //     }
-  //   );
+  pool.getConnection((err, connection) => {
+  connection.query('DELETE FROM Movies WHERE idMovie = ?', [req.params.idMovie], (err, rows) => {
+
+    if(!err) {
+      res.redirect('/');
+    } else {
+      console.log(err);
+    }
+    console.log('The data from user table: \n', rows);
+
+  });
+  });}
+
+  // Hide a record
+
+  // connection.query('UPDATE user SET status = ? WHERE id = ?', ['removed', req.params.idMovie], (err, rows) => {
+  //   if (!err) {
+  //     let removedMovies = encodeURIComponent('User successeflly removed.');
+  //     res.redirect('/?removed=' + removedMovies);
+  //   } else {
+  //     console.log(err);
+  //   }
+  //   console.log('The data from beer table are: \n', rows);
   // });
-};
+
+  
