@@ -1,1 +1,69 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100&display=swap');
+
+.nav navbar {
+    color:#0c546e;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #389dc2;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 200;
+}
+
+.styled-table tbody tr:nth-of-type {
+    background-color: #f3f3f3;
+
+      
+}
+
+  .styled-table th,
+  .styled-table td {
+      padding: 6px 8px;
+  }
+
+
+
+  .button {
+    color: #ffffff;
+    background-color: #389dc2;
+    padding: 10px;
+    border-radius: 10px;
+    /* -moz-border-radius: 10px;
+    -webkit-border-radius: 10px; */
+    margin:5px;
+    text-decoration: none;
+    font-weight: bolder;
+    text-align: center;
+    width: 90px;
+    height: 40px;
+}
+
+.small-btn {
+    width: 50px;
+    height: 25px;
+}
+
+.medium-btn {
+    width: 70px;
+    height: 30px;
+}
+
+.big-btn {
+    width: 90px;
+    height: 40px;
+}
+

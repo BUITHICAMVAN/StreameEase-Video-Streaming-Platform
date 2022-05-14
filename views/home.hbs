@@ -1,24 +1,19 @@
-<div class="row">
-  <div class="col-6">
-    <h1></h1>
-  </div>
-  <div class="col-6 d-flex justify-content-end">
-    <a href="/addmovie" type="button" class="btn btn-primary align-self-center">+ Add</a>
-  </div>
-</div>
+<table class="styled-table" href="home.hbs">
 
-<table class="table" href="home.hbs">
   <thead> <!-- header -->
-    <tr>
-        <th scope="col">idMovie</th>
-        <th scope="col">Title</th>
-        <th scope="col">Year</th>
-        <th scope="col">Genre</th>
-        <th scope="col">Director</th>
-        <th scope="col">Description</th>
-        <th scope="col" >Play</th> <!--lam thanh cai cho de mo video -->
-    </tr>
+	<tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Director</th>
+        <th>Description</th>
+        <th>Play</th> <!--lam thasnh cai cho de mo video -->
+        <th>Tool</th>
+	</tr>
+
     </thead>
+
     <tbody>
       {{#each rows}}
       <tr>
@@ -30,13 +25,17 @@
         <td>
           <p class=".d-sm-none .d-md-block">{{this.Description}}</p>
         </td>
-        <td><iframe width="450" height="250" src={{this.Play}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <td><iframe width="300" height="175" src={{this.Play}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </td> 
-        <td class="text-end">
-        <div class="btn-group btn-group-lg"> 
-        <a href="/editmovie/{{this.idMovie}}" type="button" class="btn btn-light btn-small">Edit</a>
-        <a href="/{{this.idMovie}}" type="button" class="btn btn-light btn-small"> Delete</a>
-      </td>
+        
+          <td class="text-end">
+            <div class="btn-group btn-group-lg"> 
+              <a href="/editmovie/{{this.idMovie}}" type="button" class="button">Edit</a>
+              
+              <a href="/{{this.idMovie}}" type="button" class="button">Delete</a>
+          </td>          
+        
+
         {{!-- <td>{{this.Play}}</td>  --}}
              </tr>
     {{/each}}
