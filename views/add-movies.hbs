@@ -4,12 +4,14 @@
     <li class="breadcrumb-item active" aria-current="page">Add Movies</li>
   </ol>
 </nav>
+
 {{#if alert}}
 <div class="alert alert-success alert-dismissible fade show" role = "alert">
     {{alert}}
     <button type = "button" class ="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
+
 <form class = "row g-3 needs validation" method="POST" action="/addmovie" novalidate>
     {{> movies-form}}
 </form> 
