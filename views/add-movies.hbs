@@ -11,43 +11,5 @@
 </div>
 {{/if}}
 <form class = "row g-3 needs validation" method="POST" action="/addmovie" novalidate>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="idMovie" name = "idMovie">
-            <label for="floatingInput">idMovie</label>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="Title" name = "Title">
-            <label for="floatingInput">Title</label>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="Year" name = "Year">
-            <label for="floatingInput">Year</label>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="form-floating mb-3">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="Genre" name = "Genre">
-            <label for="floatingInput">Genre</label>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="form-floating mb-6">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="Description" name = "Description">
-            <label for="floatingInput">Description</label>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="form-floating mb-6">
-            <input type="text"  class="form-control" id="floatingInput" placeholder="Play" name = "Play">
-            <label for="floatingInput">Link</label>
-        </div>
-    </div>    
-    <div class="col-12 d-grid">
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </div>    
+    {{> movies-form}}
 </form> 

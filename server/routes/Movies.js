@@ -13,4 +13,6 @@ router.post("/addmovie", MovieController.create);
 // router.post("/editmovie/:idMovie", MovieController.create);
 router.get("/editmovie/:idMovie", MovieController.edit);
 // router.post("/editmovie/:idMovie", MovieController.create);
+
+router.get("/deletemovie/:idMovie", MovieController.edit);
 module.exports = router;

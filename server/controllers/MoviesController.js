@@ -76,7 +76,7 @@ exports.create = (req, res) => {
   // User the connection
   pool.getConnection((err, connection) => {
     connection.query(
-      "insert into Movies set idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?",
+      "INSERT INTO Movies SET idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?",
       [idMovie, Title, Year, Genre, Director, Play],
       (err, rows) => {
         if (!err) {
@@ -94,4 +94,30 @@ exports.create = (req, res) => {
 exports.edit = (req, res) => {
   // Movies the connection
   res.render("edit-movies");
+
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log("Connected as ID " + connection.threadId);
+
+    connection.query(
+      "SELECT * FROM Movies WHERE idMovie = ? "[req.param.idMovie],
+      (err, rows) => {
+        //when done with connection
+        connection.release();
+
+        // if there is no err, render page home
+        if (!err) res.render("home", { rows });
+        else {
+          console.log(err);
+        }
+
+        console.log(rows);
+      }
+    );
+  });
+};
+
+exports.edit = (req, res) => {
+  // Movies the connection
+  res.render("delete-movies");
 };
