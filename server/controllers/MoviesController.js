@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host: "localhost",
   database: "Video_Streaming",
   user: "root",
-  password: "Bestteemo",
+  password: "1029384756",
 });
 
 
@@ -125,14 +125,14 @@ exports.user = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  const { idMovie, Title, Year, Genre, Director, Play } = req.body;
+  const { idMovie, Title, Year, Genre, Director, Description, Play } = req.body;
   let searchTerm = req.body.search;
 
   // User the connection
   pool.getConnection((err, connection) => {
     connection.query(
       "INSERT INTO Movies SET idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?",
-      [idMovie, Title, Year, Genre, Director, Play],
+      [idMovie, Title, Year, Genre, Director, Description, Play],
       (err, rows) => {
         if (!err) {
           res.render("add-movies", { alert: "Added successfully." });
