@@ -1,14 +1,17 @@
 
-
-      <form class="d-flex" method="POST" action="/series" novalidate>
-        <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
-
-  <a class="d-flex justify-content-end"><a href="/addseries" type="button">
-    <button class="btn btn-outline-info btn-lg" type="submit">Add</button>
-  </a>
-
+<div class="d-flex container-fluid">
+  <div class="col col-8">
+    <form class="d-flex" method="POST" action="/" novalidate>
+      <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+            <button class="btn btn-outline-dark btn-lg " type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col col-4">
+    <a class="d-flex justify-content-end"><a href="/addmovie" type="button">
+      <button class="btn btn-outline-dark btn-lg " type="submit">Add</button>
+    </a>
+  </div>
+</div>
 <table class="styled-table" href="series.hbs">
 
   <thead> <!-- header -->
@@ -51,7 +54,7 @@
         <td class="text-end">
         <div class="btn-group btn-group-lg"> 
         <a href="/series/editseries/{{this.idSeries}}" type="button" class="btn btn-light btn-small">Edit</a>
-        <a href="/series/delete/{{this.idSeries}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i> Delete</a>
+        <a href="/series/delete/{{this.idSeries}}" type="button" class="btn btn-light btn-small"><i></i> Delete</a>
       </td>
         {{!-- <td>{{this.Play}}</td>  --}}
              </tr>
