@@ -45,6 +45,14 @@ INSERT INTO `Movies` VALUES (1,'Spider-Man: No Way Home',2021,'Sci-fi','Jon Watt
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `Email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `Username` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `Password` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
