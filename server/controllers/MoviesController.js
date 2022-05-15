@@ -451,8 +451,6 @@ exports.deleteSeries = (req, res) => {
   // };
 
   exports.viewDirector = (req, res) => {
-
-    // Delete a record
   
     // User the connection
     pool.getConnection((err, connection) => {
