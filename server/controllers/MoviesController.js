@@ -202,43 +202,43 @@ exports.update = (req, res) => {
   });
 };
 
-// exports.delete = (req, res) => {
-//   pool.getConnection((err, connection) => {
-//     // Movies the connection
-//     if (err) throw err;
-//     console.log("Connected as ID " + connection.threadId);
-//     connection.query("DELETE FROM Movies WHERE idMovie = ?;",[req.params.idMovie],(err, rows) => {
-//         //when done with connection
-//         connection.release();
-//         // if there is no err, render page home
-//         if (!err) {
-//           res.redirect("/");
-//         } else {
-//           console.log(err);
-//         }
-//         console.log(rows);
-//       }
-//     );
-//   });
-// };
-
 exports.delete = (req, res) => {
-
-  // Delete a record
-
-  // User the connection
   pool.getConnection((err, connection) => {
-  connection.query('DELETE FROM Movies WHERE idMovie = ?', [req.params.idMovie], (err, rows) => {
-
-    if(!err) {
-      res.redirect('/');
-    } else {
-      console.log(err);
-    }
-    console.log('The data from user table: \n', rows);
-
+    // Movies the connection
+    if (err) throw err;
+    console.log("Connected as ID " + connection.threadId);
+    connection.query("DELETE FROM Movies WHERE idMovie = ?;",[req.params.idMovie],(err, rows) => {
+        //when done with connection
+        connection.release();
+        // if there is no err, render page home
+        if (!err) {
+          res.redirect("/");
+        } else {
+          console.log(err);
+        }
+        console.log(rows);
+      }
+    );
   });
-  });}
+};
+
+// exports.delete = (req, res) => {
+
+//   // Delete a record
+
+//   // User the connection
+//   pool.getConnection((err, connection) => {
+//   connection.query('DELETE FROM Movies WHERE idMovie = ?', [req.params.idMovie], (err, rows) => {
+
+//     if(!err) {
+//       res.redirect('/');
+//     } else {
+//       console.log(err);
+//     }
+//     console.log('The data from user table: \n', rows);
+
+//   });
+//   });}
 
   // Hide a record
 

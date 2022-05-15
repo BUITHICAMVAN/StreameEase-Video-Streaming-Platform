@@ -54,7 +54,7 @@ router.post("/user", MovieController.user);
 // router.post("/editmovie/:idMovie", MovieController.create);
 router.get("/editmovie/:idMovie", MovieController.edit);
 router.post("/editmovie/:idMovie", MovieController.update);
-//router.get("/:idMovie", MovieController.delete);
+router.get("/delete/:idMovie", MovieController.delete);
 
 // router.post("/editmovie/:idMovie", MovieController.create);
 // router.get("/deletemovie/:idMovie", MovieController.edit);
