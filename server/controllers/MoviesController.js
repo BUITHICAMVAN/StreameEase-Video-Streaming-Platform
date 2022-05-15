@@ -9,6 +9,7 @@ const pool = mysql.createPool({
   password: "Bestteemo",
 });
 
+
 // Views Movie
 exports.view = (req, res) => {
   pool.getConnection((err, connection) => {
@@ -29,7 +30,7 @@ exports.view = (req, res) => {
 
       console.log(rows);
     });
-  });
+  }); 
 };
 
 
@@ -89,7 +90,30 @@ exports.signinRender = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  res.render("sign-in");
+  const { Email, Password } = req.body;
+
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM users WHERE Email = ? AND Password = ?",
+      [Email, Password],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          if(rows.length > 0) {
+            console.log('successful');
+            loggedIn = true;
+            this.view(req, res);
+          } else {
+            res.render("sign-in", { alert: "Sign in failed" });
+          }
+        } else {
+          res.render("sign-in", { alert: "Sign in failed" });
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
 };
 
 exports.userRender = (req, res) => {
