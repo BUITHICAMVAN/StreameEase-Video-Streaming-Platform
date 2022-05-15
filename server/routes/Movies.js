@@ -1,9 +1,34 @@
 const express = require("express");
 const router = express.Router();
 const MovieController = require("../controllers/MoviesController");
+//Series
+router.get("/series", MovieController.viewSeries);
+router.post("/series", MovieController.findSeries);
+router.get("/addseries", MovieController.formSeries);
+router.post("/addseries", MovieController.createSeries);
 
+router.get("/series/editseries/:idSeries", MovieController.editSeries);
+router.post("/series/editseries/:idSeries", MovieController.updateSeries);
+router.get("/series/delete/:idSeries", MovieController.deleteSeries);
+
+// router.get("/:idMovie", MovieController.delete);
+
+
+
+//searchSeries
+
+// router.get("/addseries", MovieController.formSeries);
+// router.post("/addseries", MovieController.createSeries);
+
+
+
+
+//Movie
 router.get("/", MovieController.view);
 router.post("/", MovieController.find);
+
+
+// router.post("/series", MovieController.findSeries);
 
 // connect home page to add movie
 router.get("/addmovie", MovieController.form);
