@@ -283,7 +283,7 @@ exports.createSeries = (req, res) => {
   // User the connection
   pool.getConnection((err, connection) => {
     connection.query(
-      "INSERT INTO Movies SET idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?, No_Seasons = ?",
+      "INSERT INTO Movies SET idSeries = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?, No_Seasons = ?",
       [idMovie, Title, Year, Genre, Director, Play, No_Seasons],
       (err, rows) => {
         if (!err) {
@@ -323,11 +323,11 @@ exports.editSeries = (req, res) => {
 
 //update movies
 exports.updateSeries = (req, res) => {
-  const { idMovie, Title, Year, Genre, Director, Description, Play, No_Seasons } = req.body;
+  const { idSeries, Title, Year, Genre, Director, Description, Play, No_Seasons } = req.body;
   // User the
   pool.getConnection((err, connection) => {
     connection.query(
-      "UPDATE Series SET Title = ?, Year = ?, Genre = ?, Director = ?,Description = ?, No_Seasons = ?  , Play = ? WHERE idMovie = ?",
+      "UPDATE Series SET Title = ?, Year = ?, Genre = ?, Director = ?,Description = ?,Play = ?, No_Seasons = ?   WHERE idSeries = ?",
       [Title, Year, Genre, Director, Description, Play,  No_Seasons, req.params.idSeries,],
       (err, rows) => {
         if (!err) {
@@ -376,3 +376,71 @@ exports.deleteSeries = (req, res) => {
 
   });
   });}
+
+
+
+  exports.viewDirector = (req, res) => {
+    pool.getConnection((err, connection) => {
+      if (err) throw err;
+      console.log("Connected as ID " + connection.threadId);
+      connection.query("SELECT * FROM Series ", (err, rows) => {
+        //when done with connection
+        connection.release();
+  
+        // if there is no err, render page home
+        if (!err) {
+          let removedMovies = req.query.removed;
+          res.render("director", { rows, removedMovies });
+        }
+        else {
+          console.log(err);
+        }
+  
+        console.log(rows);
+      });
+    });
+  };
+
+
+
+  // exports.viewDirector = (req, res) => {
+
+
+  //   // User the connection
+  //   pool.getConnection((err, connection) => {
+  //     connection.query(
+  //       // "SELECT * FROM Director WHERE Name LIKE ?",
+  //       // [req.params.Name],
+
+  //       "SELECT * FROM Director where Name = ?",[req.params.Director],
+  //       (err, rows) => {
+  //         connection.release();
+  //         if (!err) {
+  //           res.render("director", { rows });
+  //         } else {
+  //           console.log(err);
+  //         }
+  //         console.log("The data from user table: \n", rows);
+  //       }
+  //     );
+  //   });
+  // };
+
+  exports.viewDirector = (req, res) => {
+
+    // Delete a record
+  
+    // User the connection
+    pool.getConnection((err, connection) => {
+    connection.query('SELECT * FROM Director WHERE Name = ?', [req.params.Director], 
+    (err, rows) => {
+
+      if(!err) {
+        res.render("director", {rows})
+      } else {
+        console.log(err);
+      }
+      console.log('The data from user table: \n', rows);
+  
+    });
+    });}

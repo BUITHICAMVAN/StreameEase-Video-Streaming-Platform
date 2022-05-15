@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,33 +14,22 @@
 </head>
 
 <body>
-  <div class="container container-fluid">
-    <nav class="navbar navbar-light bg-success navbar-expand-sm navbar-fixed-top">
-      <a class="navbar-brand" href="/">Video Streaming Management</a>
+  <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+        <div class ='d-flex mb-3'>
+          <div class="me-auto p-2"><img src="assets/logo.jpg" alt="logo page" /><a class="navbar-brand" href="/">Video Streaming Management</a></div>
+          <div class="p-1"><a class="d-flex"><a href="/signup" type="button"><button class="btn btn-outline-light " type="submit">Sign up</button></a></div>
+          <div class="p-1"><a class="d-flex"><a href="/signin" type="button"><button class="btn btn-outline-light" type="submit">Sign in</button></a></div>
+        </div>
+        <h:panelGroup rendered="#{condition}">
+          <h:outputText value="text 1"/>
+          <h:outputText value="text 2"/>
+          <h:outputText value="text 3"/>
+        </h:panelGroup>
+      </div>
+  </nav> 
 
-
-      <a class="d-flex justify-content-end"><a href="/signup" type="button">
-        <button class="btn btn-outline-light" type="submit">Sign up</button>
-      </a>
-
-      <a class="d-flex justify-content-end"><a href="/signin" type="button">
-        <button class="btn btn-outline-light" type="submit">Sign in</button>
-      </a>
-
-      <a class="d-flex justify-content-end"><a href="/user" type="button">
-        <button class="btn btn-outline-light" type="submit">User</button>
-      </a>
-      <h:panelGroup rendered="#{condition}">
-        <h:outputText value="text 1"/>
-        <h:outputText value="text 2"/>
-        <h:outputText value="text 3"/>
-      </h:panelGroup>
-    </nav> 
-  </div>
-  
   <div class="jumpotron">
     <div class="container container-fluid">
-      <div class= "justify-content-around">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item"><a class="nav-link active" href="/">Movies</a></li>
           <li class="list-group-item"><a class="nav-link active" href="/series">Series</a></li>

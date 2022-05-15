@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const MovieController = require("../controllers/MoviesController");
+//director
+router.get("/director/:Director", MovieController.viewDirector);
+
+
+
+
 //Series
 router.get("/series", MovieController.viewSeries);
 router.post("/series", MovieController.findSeries);

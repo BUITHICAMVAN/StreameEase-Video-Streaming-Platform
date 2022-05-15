@@ -1,0 +1,30 @@
+<table class="styled-table" href="director.hbs">
+
+  <thead> <!-- header -->
+	<tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+
+	</tr>
+
+    </thead>
+
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <td>{{this.dID}}</td>
+        <td>{{this.Name}}</td>    
+        <td>
+          <p class=".d-sm-none .d-md-block">{{this.Description}}</p>
+        </td>
+
+
+        {{!-- <td>{{this.Play}}</td>  --}}
+             </tr>
+    {{/each}}
+
+      
+      
+    </tbody>
+    </table>

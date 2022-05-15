@@ -1,14 +1,18 @@
-  <form class="d-flex" method="POST" action="/" novalidate>
-    <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-    <button class="btn btn-outline-light" type="submit">Search</button>
-  </form>
-  <a class="d-flex justify-content-end"><a href="/addmovie" type="button">
-    <button class="btn btn-outline-info btn-lg" type="submit">Add</button>
-  </a>
+<div class="d-flex container-fluid">
+  <div class="col col-8">
+    <form class="d-flex" method="POST" action="/" novalidate>
+      <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+      <button class="btn btn-outline-light active" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col col-4">
+    <a class="d-flex justify-content-end"><a href="/addmovie" type="button">
+      <button class="btn btn-outline-dark btn-lg " type="submit">Add</button>
+    </a>
+  </div>
+</div>
+
 <table class="styled-table" href="home.hbs">
-
-
-
 
   <thead> <!-- header -->
 	<tr>
@@ -31,7 +35,11 @@
         <td>{{this.Title}}</td>
         <td>{{this.Year}}</td>
         <td>{{this.Genre}}</td>
-        <td>{{this.Director}}</td>
+        <td>
+            <a href="/director/{{this.Director}}">
+                {{this.Director}}
+            </a>  
+        </td>
         <td>
           <p class=".d-sm-none .d-md-block">{{this.Description}}</p>
         </td>
@@ -41,7 +49,7 @@
         <div class="btn-group btn-group-lg"> 
         <a href="/editmovie/{{this.idMovie}}" type="button" class="btn btn-light btn-small">Edit</a>
         {{!-- <a href="/{{this.idMovie}}" type="button" class="btn btn-light btn-small"> Delete</a> --}}
-        <a href="/{{this.idMovie}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i> Delete</a>
+        <a href="/{{this.idMovie}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i>Delete</a>
       </td>
         {{!-- <td>{{this.Play}}</td>  --}}
              </tr>
