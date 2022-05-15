@@ -9,11 +9,15 @@ router.post("/", MovieController.find);
 router.get("/addmovie", MovieController.form);
 router.post("/addmovie", MovieController.create);
 
+// connect home page to add movie
+router.get("/signup", MovieController.signupRender);
+router.post("/signup", MovieController.signup);
+
 // connect home page to edit movie
 // router.post("/editmovie/:idMovie", MovieController.create);
 router.get("/editmovie/:idMovie", MovieController.edit);
 router.post("/editmovie/:idMovie", MovieController.update);
-router.get("/:idMovie", MovieController.delete);
+//router.get("/:idMovie", MovieController.delete);
 
 // router.post("/editmovie/:idMovie", MovieController.create);
 // router.get("/deletemovie/:idMovie", MovieController.edit);

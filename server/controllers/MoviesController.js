@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host: "localhost",
   database: "Video_Streaming",
   user: "root",
-  password: "Bestteemo",
+  password: "1029384756",
 });
 
 // Views Movie
@@ -57,20 +57,32 @@ exports.form = (req, res) => {
   res.render("add-movies");
 };
 
-// exports.create = (req, res) => {
-//   const {idMovie,Title,Year,Genre,Director,Play} = req.body;
-//   // User the connection
-//   pool.getConnection((err, connection) => {
-//     connection.query('insert into Movies set idMovie = ?,Title =  ?,Year = ?, Genre = ?, Director = ?, Play = ?', [idMovie,Title,Year,Genre,Director,Play], (err, rows) => {
-//     connection.release();
-//     if (!err) {
-//       res.render('add-movies', { alert: 'User added successfully.' });
-//     } else {
-//       console.log(err);
-//     }
-//     console.log('successfully inserted');
-//   });})
-// };
+exports.signupRender = (req, res) => {
+  res.render("sign-up");
+};
+
+exports.signup = (req, res) => {
+  const { Email, Username, Password } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "INSERT INTO Users SET Email=?, Username=?, Password=?",
+      [Email, Username, Password],
+      (err, rows) => {
+        if (!err) {
+          res.render("home", { alert: "Sign up successfully." });
+        } else {
+          console.log(err);
+          res.render("sign-up", { alert: "Sign up failed" });
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
+
 
 exports.create = (req, res) => {
   const { idMovie, Title, Year, Genre, Director, Play } = req.body;
