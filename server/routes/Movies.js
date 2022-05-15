@@ -13,11 +13,17 @@ router.post("/addmovie", MovieController.create);
 router.get("/signup", MovieController.signupRender);
 router.post("/signup", MovieController.signup);
 
+router.get("/signin", MovieController.signinRender);
+router.post("/signin", MovieController.signin);
+
+router.get("/user", MovieController.userRender);
+router.post("/user", MovieController.user);
+
 // connect home page to edit movie
 // router.post("/editmovie/:idMovie", MovieController.create);
 router.get("/editmovie/:idMovie", MovieController.edit);
 router.post("/editmovie/:idMovie", MovieController.update);
-//router.get("/:idMovie", MovieController.delete);
+router.get("/:idMovie", MovieController.delete);
 
 // router.post("/editmovie/:idMovie", MovieController.create);
 // router.get("/deletemovie/:idMovie", MovieController.edit);

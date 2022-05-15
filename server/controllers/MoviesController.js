@@ -72,7 +72,7 @@ exports.signup = (req, res) => {
       [Email, Username, Password],
       (err, rows) => {
         if (!err) {
-          res.render("home", { alert: "Sign up successfully." });
+          res.render("sign-up", { alert: "Sign up successfully." });
         } else {
           console.log(err);
           res.render("sign-up", { alert: "Sign up failed" });
@@ -83,6 +83,21 @@ exports.signup = (req, res) => {
   });
 };
 
+exports.signinRender = (req, res) => {
+  res.render("sign-in");
+};
+
+exports.signin = (req, res) => {
+  res.render("sign-in");
+};
+
+exports.userRender = (req, res) => {
+  res.render("user");
+};
+
+exports.user = (req, res) => {
+
+};
 
 exports.create = (req, res) => {
   const { idMovie, Title, Year, Genre, Director, Play } = req.body;
