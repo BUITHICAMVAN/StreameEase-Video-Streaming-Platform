@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const MovieController = require("../controllers/MoviesController");
 //director
-router.get("/director/:Director", MovieController.viewDirector);
+router.get("/director/:dID", MovieController.viewDirector);
+router.get("/directorMovies/:dID", MovieController.viewDirectorMovies);
 
+router.get("/actor/:aID", MovieController.viewActor);
+router.get("/actorMovies/:aID", MovieController.viewActorsMovies);
 
 
 

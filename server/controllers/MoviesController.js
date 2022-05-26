@@ -40,8 +40,8 @@ exports.find = (req, res) => {
   // User the connection
   pool.getConnection((err, connection) => {
     connection.query(
-      "SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ?",
-      ["%" + searchTerm + "%", "%" + searchTerm + "%"],
+      "SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ? OR ACTOR LIKE ? OR DIRECTOR LIKE ?",
+      ["%" + searchTerm + "%", "%" + searchTerm + "%", "%" + searchTerm + "%", "%" + searchTerm + "%"],
       (err, rows) => {
         connection.release();
         if (!err) {
@@ -454,7 +454,8 @@ exports.deleteSeries = (req, res) => {
   
     // User the connection
     pool.getConnection((err, connection) => {
-    connection.query('SELECT * FROM Director WHERE Name = ?', [req.params.Director], 
+    connection.query('SELECT * FROM Director WHERE dID = ?'
+      , [req.params.dID], 
     (err, rows) => {
 
       if(!err) {
@@ -466,3 +467,60 @@ exports.deleteSeries = (req, res) => {
   
     });
     });}
+
+    exports.viewDirectorMovies = (req, res) => {
+  
+      // User the connection
+      pool.getConnection((err, connection) => {
+      connection.query('SELECT * FROM Movies WHERE dID = ? '
+        , [req.params.dID], 
+      (err, rows) => {
+  
+        if(!err) {
+          res.render("home", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log('The data from user table: \n', rows);
+    
+      });
+      });}
+
+
+
+
+      exports.viewActor = (req, res) => {
+  
+        // User the connection
+        pool.getConnection((err, connection) => {
+        connection.query('SELECT * FROM Actors WHERE aID = ?'
+          , [req.params.aID], 
+        (err, rows) => {
+    
+          if(!err) {
+            res.render("actor", {rows})
+          } else {
+            console.log(err);
+          }
+          console.log('The data from user table: \n', rows);
+      
+        });
+        });}
+    
+        exports.viewActorsMovies = (req, res) => {
+      
+          // User the connection
+          pool.getConnection((err, connection) => {
+          connection.query('SELECT * FROM Movies WHERE aID = ?'
+            , [req.params.aID], 
+          (err, rows) => {
+      
+            if(!err) {
+              res.render("home", { rows });
+            } else {
+              console.log(err);
+            }
+            console.log('The data from user table: \n', rows);
+        
+          });
+          });}
