@@ -554,7 +554,7 @@ exports.deleteSeries = (req, res) => {
             (err, rows) => {
         
               if(!err) {
-                res.render("Series", { rows });
+                res.render("series", { rows });
               } else {
                 console.log(err);
               }
