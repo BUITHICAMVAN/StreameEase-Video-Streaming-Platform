@@ -21,6 +21,7 @@
         <th>Year</th>
         <th>Genre</th>
         <th>Director</th>
+        <th>Actor</th>
         <th>Description</th>
         <th>Play</th> <!--lam thasnh cai cho de mo video -->
         <th>No_Seasons</th>
@@ -37,11 +38,15 @@
         <td>{{this.Year}}</td>
         <td>{{this.Genre}}</td>
         <td>
-            {{!-- <a href="/"> --}}
+            <a href="/director/{{this.dID}}">
                 {{this.Director}}
-            {{!-- </a>   --}}
+            </a>  
         </td>
-   
+        <td>
+            <a href="/actor/{{this.aID}}">
+                {{this.Actor}}
+            </a>          
+        <td>   
         
         <td>
           <p class=".d-sm-none .d-md-block">{{this.Description}}</p>

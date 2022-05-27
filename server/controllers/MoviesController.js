@@ -55,6 +55,8 @@ exports.find = (req, res) => {
   });
 };
 
+
+
 exports.form = (req, res) => {
   res.render("add-movies");
 };
@@ -486,6 +488,24 @@ exports.deleteSeries = (req, res) => {
       });
       });}
 
+      exports.viewDirectorSeries = (req, res) => {
+  
+        // User the connection
+        pool.getConnection((err, connection) => {
+        connection.query('SELECT * FROM Series WHERE dID = ?'
+          , [req.params.dID], 
+        (err, rows) => {
+    
+          if(!err) {
+            res.render("series", { rows });
+          } else {
+            console.log(err);
+          }
+          console.log('The data from user table: \n', rows);
+      
+        });
+        });}
+
 
 
 
@@ -524,3 +544,21 @@ exports.deleteSeries = (req, res) => {
         
           });
           });}
+
+          exports.viewActorsSeries = (req, res) => {
+      
+            // User the connection
+            pool.getConnection((err, connection) => {
+            connection.query('SELECT * FROM Series WHERE aID = ?'
+              , [req.params.aID], 
+            (err, rows) => {
+        
+              if(!err) {
+                res.render("Series", { rows });
+              } else {
+                console.log(err);
+              }
+              console.log('The data from user table: \n', rows);
+          
+            });
+            });}

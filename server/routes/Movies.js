@@ -4,9 +4,12 @@ const MovieController = require("../controllers/MoviesController");
 //director
 router.get("/director/:dID", MovieController.viewDirector);
 router.get("/directorMovies/:dID", MovieController.viewDirectorMovies);
+router.get("/directorSeries/:dID", MovieController.viewDirectorSeries);
+
 
 router.get("/actor/:aID", MovieController.viewActor);
 router.get("/actorMovies/:aID", MovieController.viewActorsMovies);
+router.get("/actorSeries/:aID", MovieController.viewActorsSeries);
 
 
 
