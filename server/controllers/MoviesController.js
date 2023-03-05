@@ -6,9 +6,8 @@ const pool = mysql.createPool({
   host: "localhost",
   database: "Video_Streaming",
   user: "root",
-  password: "Bestteemo",
+  password: "@@@Btcv08122002",
 });
-
 
 // Views Movie
 exports.view = (req, res) => {
@@ -23,16 +22,14 @@ exports.view = (req, res) => {
       if (!err) {
         let removedMovies = req.query.removed;
         res.render("home", { rows, removedMovies });
-      }
-      else {
+      } else {
         console.log(err);
       }
 
       console.log(rows);
     });
-  }); 
+  });
 };
-
 
 //Find user by search
 exports.find = (req, res) => {
@@ -41,7 +38,12 @@ exports.find = (req, res) => {
   pool.getConnection((err, connection) => {
     connection.query(
       "SELECT * FROM Movies WHERE Title LIKE ? OR Year LIKE ? OR ACTOR LIKE ? OR DIRECTOR LIKE ?",
-      ["%" + searchTerm + "%", "%" + searchTerm + "%", "%" + searchTerm + "%", "%" + searchTerm + "%"],
+      [
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+        "%" + searchTerm + "%",
+      ],
       (err, rows) => {
         connection.release();
         if (!err) {
@@ -54,8 +56,6 @@ exports.find = (req, res) => {
     );
   });
 };
-
-
 
 exports.form = (req, res) => {
   res.render("add-movies");
@@ -101,8 +101,8 @@ exports.signin = (req, res) => {
       (err, rows) => {
         connection.release();
         if (!err) {
-          if(rows.length > 0) {
-            console.log('successful');
+          if (rows.length > 0) {
+            console.log("successful");
             loggedIn = true;
             this.view(req, res);
           } else {
@@ -122,9 +122,7 @@ exports.userRender = (req, res) => {
   res.render("user");
 };
 
-exports.user = (req, res) => {
-
-};
+exports.user = (req, res) => {};
 
 exports.create = (req, res) => {
   const { idMovie, Title, Year, Genre, Director, Description, Play } = req.body;
@@ -209,7 +207,10 @@ exports.delete = (req, res) => {
     // Movies the connection
     if (err) throw err;
     console.log("Connected as ID " + connection.threadId);
-    connection.query("DELETE FROM Movies WHERE idMovie = ?;",[req.params.idMovie],(err, rows) => {
+    connection.query(
+      "DELETE FROM Movies WHERE idMovie = ?;",
+      [req.params.idMovie],
+      (err, rows) => {
         //when done with connection
         connection.release();
         // if there is no err, render page home
@@ -242,45 +243,42 @@ exports.delete = (req, res) => {
 //   });
 //   });}
 
-  // Hide a record
+// Hide a record
 
-  // connection.query('UPDATE user SET status = ? WHERE id = ?', ['removed', req.params.idMovie], (err, rows) => {
-  //   if (!err) {
-  //     let removedMovies = encodeURIComponent('User successeflly removed.');
-  //     res.redirect('/?removed=' + removedMovies);
-  //   } else {
-  //     console.log(err);
-  //   }
-  //   console.log('The data from beer table are: \n', rows);
-  // });
+// connection.query('UPDATE user SET status = ? WHERE id = ?', ['removed', req.params.idMovie], (err, rows) => {
+//   if (!err) {
+//     let removedMovies = encodeURIComponent('User successeflly removed.');
+//     res.redirect('/?removed=' + removedMovies);
+//   } else {
+//     console.log(err);
+//   }
+//   console.log('The data from beer table are: \n', rows);
+// });
 
-  //Series
+//Series
 
+exports.viewSeries = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log("Connected as ID " + connection.threadId);
+    connection.query("SELECT * FROM Series ", (err, rows) => {
+      //when done with connection
+      connection.release();
 
-  exports.viewSeries = (req, res) => {
-    pool.getConnection((err, connection) => {
-      if (err) throw err;
-      console.log("Connected as ID " + connection.threadId);
-      connection.query("SELECT * FROM Series ", (err, rows) => {
-        //when done with connection
-        connection.release();
-  
-        // if there is no err, render page home
-        if (!err) {
-          let removedMovies = req.query.removed;
-          res.render("series", { rows, removedMovies });
-        }
-        else {
-          console.log(err);
-        }
-  
-        console.log(rows);
-      });
+      // if there is no err, render page home
+      if (!err) {
+        let removedMovies = req.query.removed;
+        res.render("series", { rows, removedMovies });
+      } else {
+        console.log(err);
+      }
+
+      console.log(rows);
     });
-  };
+  });
+};
 
-
-  //Find user by search
+//Find user by search
 exports.findSeries = (req, res) => {
   let searchTerm = req.body.search;
   // User the connection
@@ -300,7 +298,6 @@ exports.findSeries = (req, res) => {
     );
   });
 };
-
 
 exports.createSeries = (req, res) => {
   const { idMovie, Title, Year, Genre, Director, Play, No_Seasons } = req.body;
@@ -349,12 +346,30 @@ exports.editSeries = (req, res) => {
 
 //update movies
 exports.updateSeries = (req, res) => {
-  const { idSeries, Title, Year, Genre, Director, Description, Play, No_Seasons } = req.body;
+  const {
+    idSeries,
+    Title,
+    Year,
+    Genre,
+    Director,
+    Description,
+    Play,
+    No_Seasons,
+  } = req.body;
   // User the
   pool.getConnection((err, connection) => {
     connection.query(
       "UPDATE Series SET Title = ?, Year = ?, Genre = ?, Director = ?,Description = ?,Play = ?, No_Seasons = ?   WHERE idSeries = ?",
-      [Title, Year, Genre, Director, Description, Play,  No_Seasons, req.params.idSeries,],
+      [
+        Title,
+        Year,
+        Genre,
+        Director,
+        Description,
+        Play,
+        No_Seasons,
+        req.params.idSeries,
+      ],
       (err, rows) => {
         if (!err) {
           // User the connection
@@ -384,181 +399,173 @@ exports.updateSeries = (req, res) => {
   });
 };
 
-
 exports.deleteSeries = (req, res) => {
-
   // Delete a record
 
   // User the connection
   pool.getConnection((err, connection) => {
-  connection.query('DELETE FROM Series WHERE idSeries = ?', [req.params.idSeries], (err, rows) => {
-
-    if(!err) {
-      res.redirect('/series');
-    } else {
-      console.log(err);
-    }
-    console.log('The data from user table: \n', rows);
-
-  });
-  });}
-
-
-
-  exports.viewDirector = (req, res) => {
-    pool.getConnection((err, connection) => {
-      if (err) throw err;
-      console.log("Connected as ID " + connection.threadId);
-      connection.query("SELECT * FROM Series ", (err, rows) => {
-        //when done with connection
-        connection.release();
-  
-        // if there is no err, render page home
+    connection.query(
+      "DELETE FROM Series WHERE idSeries = ?",
+      [req.params.idSeries],
+      (err, rows) => {
         if (!err) {
-          let removedMovies = req.query.removed;
-          res.render("director", { rows, removedMovies });
-        }
-        else {
+          res.redirect("/series");
+        } else {
           console.log(err);
         }
-  
-        console.log(rows);
-      });
-    });
-  };
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
 
+exports.viewDirector = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log("Connected as ID " + connection.threadId);
+    connection.query("SELECT * FROM Series ", (err, rows) => {
+      //when done with connection
+      connection.release();
 
-
-  // exports.viewDirector = (req, res) => {
-
-
-  //   // User the connection
-  //   pool.getConnection((err, connection) => {
-  //     connection.query(
-  //       // "SELECT * FROM Director WHERE Name LIKE ?",
-  //       // [req.params.Name],
-
-  //       "SELECT * FROM Director where Name = ?",[req.params.Director],
-  //       (err, rows) => {
-  //         connection.release();
-  //         if (!err) {
-  //           res.render("director", { rows });
-  //         } else {
-  //           console.log(err);
-  //         }
-  //         console.log("The data from user table: \n", rows);
-  //       }
-  //     );
-  //   });
-  // };
-
-  exports.viewDirector = (req, res) => {
-  
-    // User the connection
-    pool.getConnection((err, connection) => {
-    connection.query('SELECT * FROM Director WHERE dID = ?'
-      , [req.params.dID], 
-    (err, rows) => {
-
-      if(!err) {
-        res.render("director", {rows})
+      // if there is no err, render page home
+      if (!err) {
+        let removedMovies = req.query.removed;
+        res.render("director", { rows, removedMovies });
       } else {
         console.log(err);
       }
-      console.log('The data from user table: \n', rows);
-  
-    });
-    });}
 
-    exports.viewDirectorMovies = (req, res) => {
-  
-      // User the connection
-      pool.getConnection((err, connection) => {
-      connection.query('SELECT * FROM Movies WHERE dID = ? '
-        , [req.params.dID], 
+      console.log(rows);
+    });
+  });
+};
+
+// exports.viewDirector = (req, res) => {
+
+//   // User the connection
+//   pool.getConnection((err, connection) => {
+//     connection.query(
+//       // "SELECT * FROM Director WHERE Name LIKE ?",
+//       // [req.params.Name],
+
+//       "SELECT * FROM Director where Name = ?",[req.params.Director],
+//       (err, rows) => {
+//         connection.release();
+//         if (!err) {
+//           res.render("director", { rows });
+//         } else {
+//           console.log(err);
+//         }
+//         console.log("The data from user table: \n", rows);
+//       }
+//     );
+//   });
+// };
+
+exports.viewDirector = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Director WHERE dID = ?",
+      [req.params.dID],
       (err, rows) => {
-  
-        if(!err) {
+        if (!err) {
+          res.render("director", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
+
+exports.viewDirectorMovies = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Movies WHERE dID = ? ",
+      [req.params.dID],
+      (err, rows) => {
+        if (!err) {
           res.render("home", { rows });
         } else {
           console.log(err);
         }
-        console.log('The data from user table: \n', rows);
-    
-      });
-      });}
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
 
-      exports.viewDirectorSeries = (req, res) => {
-  
-        // User the connection
-        pool.getConnection((err, connection) => {
-        connection.query('SELECT * FROM Series WHERE dID = ?'
-          , [req.params.dID], 
-        (err, rows) => {
-    
-          if(!err) {
-            res.render("series", { rows });
-          } else {
-            console.log(err);
-          }
-          console.log('The data from user table: \n', rows);
-      
-        });
-        });}
+exports.viewDirectorSeries = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Series WHERE dID = ?",
+      [req.params.dID],
+      (err, rows) => {
+        if (!err) {
+          res.render("series", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
 
+exports.viewActor = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Actors WHERE aID = ?",
+      [req.params.aID],
+      (err, rows) => {
+        if (!err) {
+          res.render("actor", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
 
+exports.viewActorsMovies = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Movies WHERE aID = ?",
+      [req.params.aID],
+      (err, rows) => {
+        if (!err) {
+          res.render("home", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
 
-
-      exports.viewActor = (req, res) => {
-  
-        // User the connection
-        pool.getConnection((err, connection) => {
-        connection.query('SELECT * FROM Actors WHERE aID = ?'
-          , [req.params.aID], 
-        (err, rows) => {
-    
-          if(!err) {
-            res.render("actor", {rows})
-          } else {
-            console.log(err);
-          }
-          console.log('The data from user table: \n', rows);
-      
-        });
-        });}
-    
-        exports.viewActorsMovies = (req, res) => {
-      
-          // User the connection
-          pool.getConnection((err, connection) => {
-          connection.query('SELECT * FROM Movies WHERE aID = ?'
-            , [req.params.aID], 
-          (err, rows) => {
-      
-            if(!err) {
-              res.render("home", { rows });
-            } else {
-              console.log(err);
-            }
-            console.log('The data from user table: \n', rows);
-        
-          });
-          });}
-
-          exports.viewActorsSeries = (req, res) => {
-      
-            // User the connection
-            pool.getConnection((err, connection) => {
-            connection.query('SELECT * FROM Series WHERE aID = ?'
-              , [req.params.aID], 
-            (err, rows) => {
-        
-              if(!err) {
-                res.render("series", { rows });
-              } else {
-                console.log(err);
-              }
-              console.log('The data from user table: \n', rows);
-          
-            });
-            });}
+exports.viewActorsSeries = (req, res) => {
+  // User the connection
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM Series WHERE aID = ?",
+      [req.params.aID],
+      (err, rows) => {
+        if (!err) {
+          res.render("series", { rows });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+  });
+};
